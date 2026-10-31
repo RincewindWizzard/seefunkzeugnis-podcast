@@ -9,51 +9,65 @@
     --bg:#fafaf7; --fg:#1d1d1b; --muted:#6b6b66; --line:#dcdcd5;
     --hinnerk:#1f5fa8; --jonas:#d9822b; --birte:#2e8b57; --ole:#8b5a2b;
     --klaas:#b03a6f; --nordic:#4b4b9e; --bremen:#c0392b; --erzaehler:#555;
+    --card:#fff; --th:#eeeee8; --h2bg:#1d1d1b; --h2fg:#fff;
+    --radio-bg:#f5f7fb; --dev-bg:#fffbea; --dev-tag-bg:#f3e6a8; --dev-tag-fg:#5a4a00; --dev-border:#888;
+    --sfx-bg:#efe9f7; --sfx-fg:#4a2f73; --play-bg:#1d1d1b;
+    color-scheme:light;
+  }
+  html.dark{
+    --bg:#16181c; --fg:#e6e6e1; --muted:#9a9a93; --line:#33363d;
+    --hinnerk:#6aa7ef; --jonas:#f0a35a; --birte:#5cc98c; --ole:#c8955f;
+    --klaas:#e47aa8; --nordic:#9a9af0; --bremen:#f07a6c; --erzaehler:#aaa;
+    --card:#1f2228; --th:#2a2d34; --h2bg:#2b2f37; --h2fg:#fff;
+    --radio-bg:#1a2030; --dev-bg:#2a2614; --dev-tag-bg:#4a4020; --dev-tag-fg:#f3e6a8; --dev-border:#6a6040;
+    --sfx-bg:#2c2440; --sfx-fg:#cdb8f2; --play-bg:#3a3f4a;
+    color-scheme:dark;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
   main{max-width:860px;margin:0 auto;padding:24px 20px 80px}
   h1{font-size:1.7rem;margin:0 0 4px}
   .sub{color:var(--muted);margin:0 0 24px}
-  h2{margin:48px 0 12px;padding:8px 12px;background:var(--fg);color:#fff;border-radius:6px;font-size:1.2rem;scroll-margin-top:90px}
+  h2{margin:48px 0 12px;padding:8px 12px;background:var(--h2bg);color:var(--h2fg);border-radius:6px;font-size:1.2rem;scroll-margin-top:90px}
   h3{margin:28px 0 8px;font-size:1.05rem;border-bottom:2px solid var(--line);padding-bottom:4px}
   table{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:.92rem}
   th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
-  th{background:#eeeee8}
-  .box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:12px 0}
+  th{background:var(--th)}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:12px 0}
   .box ul{margin:4px 0;padding-left:20px}
 
   /* Rollen-Filter */
   .filter{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
   .filter b{font-size:.9rem;margin-right:6px}
-  .chip{display:inline-flex;align-items:center;gap:4px;margin:3px 4px 3px 0;padding:3px 10px;border-radius:999px;border:2px solid var(--c);color:var(--c);font-size:.85rem;font-weight:600;cursor:pointer;background:#fff;user-select:none}
+  .chip{display:inline-flex;align-items:center;gap:4px;margin:3px 4px 3px 0;padding:3px 10px;border-radius:999px;border:2px solid var(--c);color:var(--c);font-size:.85rem;font-weight:600;cursor:pointer;background:var(--card);user-select:none}
   .chip input{accent-color:var(--c);margin:0}
-  .filter button{margin-left:6px;font-size:.8rem;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+  .filter button{margin-left:6px;font-size:.8rem;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
   body.filtering .spk:not(.sel){opacity:.28}
   body.filtering .spk.sel{box-shadow:0 0 0 3px var(--c)}
 
   /* Sprecherblöcke */
   .r-hinnerk{--c:var(--hinnerk)} .r-jonas{--c:var(--jonas)} .r-birte{--c:var(--birte)} .r-ole{--c:var(--ole)}
   .r-klaas{--c:var(--klaas)} .r-nordic{--c:var(--nordic)} .r-bremen{--c:var(--bremen)} .r-erzaehler{--c:var(--erzaehler)}
-  .spk{background:#fff;border:1px solid var(--line);border-left:8px solid var(--c);border-radius:6px;margin:10px 0;padding:8px 14px 10px;transition:opacity .15s}
+  .spk{background:var(--card);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:6px;margin:10px 0;padding:8px 14px 10px;transition:opacity .15s}
   .who{font-weight:800;color:var(--c);text-transform:uppercase;letter-spacing:.03em;font-size:.88rem;margin-bottom:4px}
   .who .ship{margin-left:8px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted)}
   .who .note{text-transform:none;font-weight:500;color:var(--muted)}
   .say p{margin:3px 0}
 
   /* Funkspruch */
-  .radio{margin:8px 0;border:2px solid var(--c);border-radius:6px;background:#f5f7fb;overflow:hidden}
+  .radio{margin:8px 0;border:2px solid var(--c);border-radius:6px;background:var(--radio-bg);overflow:hidden}
   .radio .tag{background:var(--c);color:#fff}
+  html.dark .radio .tag{color:#111}
   .radio pre{margin:0;padding:10px 12px;font:600 .98rem/1.55 ui-monospace,"Cascadia Mono",Consolas,monospace;white-space:pre-wrap}
 
   /* Geräteeinstellung */
-  .device{margin:8px 0;border:1px dashed #888;border-radius:6px;background:#fffbea}
-  .device .tag{background:#f3e6a8;color:#5a4a00}
+  .device{margin:8px 0;border:1px dashed var(--dev-border);border-radius:6px;background:var(--dev-bg)}
+  .device .tag{background:var(--dev-tag-bg);color:var(--dev-tag-fg)}
   .device ul{margin:6px 0;padding:0 12px 4px 30px;font-size:.95rem}
   .tag{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px}
 
   /* Regie & Geräusche */
-  .sfx{margin:10px 0;padding:6px 12px;background:#efe9f7;border-radius:6px;color:#4a2f73;font-style:italic;font-weight:600}
+  .sfx{margin:10px 0;padding:6px 12px;background:var(--sfx-bg);border-radius:6px;color:var(--sfx-fg);font-style:italic;font-weight:600}
   .stage{margin:10px 0;padding:6px 12px;color:var(--muted);font-style:italic;border-left:3px solid var(--line)}
 
   .legend span{display:inline-block;margin:2px 8px 2px 0;font-size:.85rem}
@@ -62,11 +76,12 @@
 
 
   /* Auto-Scroll-Sidebar */
-  .side{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:10;width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.85rem;text-align:center}
-  .side .play{width:100%;font-size:1.1rem;font-weight:700;padding:10px 0;border:0;border-radius:8px;background:var(--fg);color:#fff;cursor:pointer}
+  .side{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:10;width:150px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.85rem;text-align:center}
+  .side .play{width:100%;font-size:1.1rem;font-weight:700;padding:10px 0;border:0;border-radius:8px;background:var(--play-bg);color:#fff;cursor:pointer}
   .side .play.on{background:#c0392b}
   .side label{display:block;margin-top:10px;color:var(--muted)}
   .side input[type=range]{width:100%}
+  .side .mode{margin-top:10px;width:100%;padding:6px 0;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);cursor:pointer;font-size:.85rem}
   .side .hint{margin-top:8px;color:var(--muted);font-size:.75rem}
   @media (max-width:1240px){
     .side{left:auto;right:12px;top:auto;bottom:12px;transform:none;width:auto;display:flex;align-items:center;gap:10px;padding:8px 10px}
@@ -74,22 +89,29 @@
     .side label{margin:0}
     .side input[type=range]{width:110px}
     .side .hint{display:none}
+    .side .mode{margin:0;width:auto;padding:6px 10px}
   }
   @media print{
     .side{display:none}
     .filter,button{display:none}
-    body{font-size:12pt;background:#fff}
+    body{font-size:12pt;background:#fff;color:#000}
+    .spk,.box,.radio,.device{background:#fff !important}
     .spk,.radio,.device{break-inside:avoid}
     h2{break-before:page;background:none;color:#000;border-bottom:3px solid #000;border-radius:0}
     body.filtering .spk:not(.sel){opacity:.35}
   }
 </style>
+<script>
+  (function(){var m=null;try{m=localStorage.getItem('mode')}catch(e){}
+   if(m==='dark'||(m===null&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');})();
+</script>
 </head>
 <body>
 <aside class="side" aria-label="Automatisch scrollen">
   <button type="button" class="play" id="play">▶ Play</button>
   <label for="speed">Tempo: <b id="speedval">35</b></label>
   <input type="range" id="speed" min="10" max="120" step="5" value="35">
+  <button type="button" class="mode" id="mode">🌙 Dark Mode</button>
   <div class="hint">Leertaste = Play/Pause</div>
 </aside>
 <main>
@@ -169,6 +191,16 @@
   }
   boxes.forEach(b=>b.addEventListener('change',apply));
   document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);apply();});
+
+  // Dark Mode
+  const modeBtn=document.getElementById('mode');
+  function syncMode(){modeBtn.textContent=document.documentElement.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';}
+  modeBtn.addEventListener('click',()=>{
+    const d=document.documentElement.classList.toggle('dark');
+    try{localStorage.setItem('mode',d?'dark':'light')}catch(e){}
+    syncMode();
+  });
+  syncMode();
 
   // Auto-Scroll
   const btn=document.getElementById('play'), sp=document.getElementById('speed'), spv=document.getElementById('speedval');
