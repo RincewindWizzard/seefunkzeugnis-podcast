@@ -21,6 +21,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libudev-dev pkg-config
 
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Tests und Lints
+        run: cargo test --locked && cargo clippy --locked -- -D warnings
 
       - name: Bauen
         run: cargo build --release --locked && strip target/release/hoerspiel-deck

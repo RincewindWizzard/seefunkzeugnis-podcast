@@ -41,7 +41,7 @@ Eigenständiges Programm: spricht das Stream Deck direkt über USB an, setzt die
 ## Benutzen
 
     hoerspiel-deck                     # starten
-    hoerspiel-deck --helligkeit 40     # dunkler
+    hoerspiel-deck --brightness 40     # dunkler
     hoerspiel-deck setup               # nur die Spuren in Audacity anlegen
 
 ### Optional: automatisch beim Anmelden starten
@@ -60,10 +60,41 @@ Ausgaben ansehen mit `journalctl --user -u hoerspiel-deck -f`.
     cargo build --release
     # Ergebnis: target/release/hoerspiel-deck
 
-## Anpassen
-Alles steht oben in `src/main.rs`:
-- `SPUREN`: welche Spuren angelegt werden.
-- `BELEGUNG`: welche Taste was tut, und welches Bild. Die Bilder liegen in `assets/` (144 × 144 PNG) und werden beim Bauen eingebettet.
+## Aufbau des Codes
+
+| Datei             | Inhalt                                                                  |
+|-------------------|-------------------------------------------------------------------------|
+| `src/main.rs`     | Hauptschleife: Deck suchen, Tasten lesen, Bilder zeichnen, neu verbinden |
+| `src/audacity.rs` | Client für das Audacity-Protokoll (ausführlich kommentiert)             |
+| `src/layout.rs`   | Spurliste `TRACKS` und Tastenbelegung `LAYOUT`, dazu Tests               |
+| `src/icons.rs`    | Tastenbilder und ihre Varianten (aktiv, Alarm, abgedunkelt)              |
+| `assets/`         | Tastenbilder, 144 × 144 PNG, werden beim Bauen eingebettet               |
+
+Andere Spuren oder eine andere Belegung trägst du in `src/layout.rs` ein. Ein Test prüft, dass jede Spur-Taste auch eine Spur in `TRACKS` hat (`cargo test`).
+
+Der Code enthält kein `unsafe` (`#![forbid(unsafe_code)]`).
+
+## Das Audacity-Protokoll in Kürze
+
+Die vollständige Erklärung steht als Kommentar in `src/audacity.rs`. Hier das Wichtigste:
+
+- **Zwei benannte Pipes (FIFOs)** in `/tmp`, eine pro Richtung. In `audacity_script_pipe.to.<uid>` schreibt das Programm Befehle, aus `audacity_script_pipe.from.<uid>` liest es die Antworten. `<uid>` ist deine Benutzer-ID (`id -u`).
+- **Reihenfolge beim Öffnen:** erst die *to*-Pipe, dann die *from*-Pipe. Audacity wartet zuerst auf die *to*-Pipe und öffnet seine *from*-Seite erst danach. Andersherum würden beide Seiten aufeinander warten.
+- **Läuft Audacity nicht**, bleiben die Pipe-Dateien trotzdem liegen. Ein normales Öffnen würde dann ewig hängen. Deshalb öffnet das Programm die *to*-Pipe nicht blockierend: Ohne Leser meldet Linux sofort „No such device or address“ (ENXIO).
+- **Ein Befehl ist eine Zeile:** `Befehlsname: Parameter=Wert …`, Werte mit Leerzeichen in Anführungszeichen. Die Befehlsnamen sind dieselben wie im Makro-Editor von Audacity.
+
+      SelectTracks: Track=3 TrackCount=1 Mode=Set
+      SetTrackStatus: Name="Funk Klaas"
+
+- **Die Antwort** besteht aus eventuellen Ausgabezeilen (bei `GetInfo` zum Beispiel JSON), dann `BatchCommand finished: OK` (oder `Failed!`) und einer **Leerzeile** als Ende. Erst danach darf der nächste Befehl kommen.
+- **Spurnummern** zählen ab 0 von oben und ändern sich beim Umsortieren. Deshalb fragt das Programm vor jedem Auswählen per `GetInfo: Type=Tracks Format=JSON` die Spurliste ab und sucht die Spur über ihren Namen.
+
+Zum Ausprobieren von Hand, solange Audacity läuft:
+
+    exec 3>/tmp/audacity_script_pipe.to.$(id -u) 4</tmp/audacity_script_pipe.from.$(id -u)
+    echo 'GetInfo: Type=Tracks Format=JSON' >&3
+    timeout 1 cat <&4
+    exec 3>&- 4<&-
 
 ## Hinweis zur Aufnahme
 AUFNAHME entspricht der Taste R in Audacity. Ob Audacity an der Cursorposition aufnimmt oder ans Spurende anhängt, hängt von Version und Einstellungen ab. Teste es einmal mit zwei Spuren.
