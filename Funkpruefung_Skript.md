@@ -64,6 +64,24 @@ Skipper:
 	
 	Over
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 # Fehlalarm
 
 Skipper Seeadler:
@@ -274,5 +292,108 @@ Skipper Seeadler:
 	
 Nordic Star:
 	
-	
 
+	Kapitän, wir haben einen DSC-Notalarm von der Seeadler. Mann über Bord, ganz in unserer Nähe.
+	Bremen Rescue hat nicht bestätigt. Dann übernehmen wir das.
+	Erst bestätigen wir der Seeadler, dann leiten wir den Notruf weiter.
+
+	------------------------------------
+	MAYDAY
+	Seeadler, Seeadler, Seeadler
+	Call sign Delta Hotel Four Seven Two Eight
+	MMSI 211 384 960
+	This is Nordic Star, Nordic Star, Nordic Star
+	Call sign Victor Two Quebec Kilo Seven
+	MMSI 305 418 000
+	RECEIVED MAYDAY
+
+	OVER
+	------------------------------------
+
+	Jetzt im DSC-Menü einen Distress Relay als Individual Call an Bremen Rescue senden,
+	MMSI 002 111 240, dann weiter auf Kanal 16.
+
+	------------------------------------
+	MAYDAY RELAY, MAYDAY RELAY, MAYDAY RELAY
+	Bremen Rescue, Bremen Rescue, Bremen Rescue
+	This is Nordic Star, Nordic Star, Nordic Star
+	Call sign Victor Two Quebec Kilo Seven
+	MMSI 305 418 000
+
+	Following received from Seeadler
+	Call sign Delta Hotel Four Seven Two Eight
+	MMSI 211 384 960
+
+	MAYDAY
+	Seeadler
+	Call sign Delta Hotel Four Seven Two Eight
+	MMSI 211 384 960
+	Position five four degrees three one decimal four minutes North,
+	zero one zero degrees two three decimal seven minutes East.
+	Man overboard. One child in the water.
+	Requires immediate assistance.
+	Recovery manoeuvre in progress. Four persons on board.
+
+	OVER
+	------------------------------------
+
+Bremen Rescue:
+
+	------------------------------------
+	MAYDAY
+	Nordic Star, Nordic Star, Nordic Star
+	Call sign Victor Two Quebec Kilo Seven
+	MMSI 305 418 000
+	This is Bremen Rescue, Bremen Rescue, Bremen Rescue
+	MMSI 002 111 240
+	RECEIVED MAYDAY RELAY.
+	Rescue unit proceeding to position, ETA one five minutes.
+	Nordic Star, remain in vicinity and keep watch on channel one six.
+
+	OVER
+	------------------------------------
+	
+Bremen Rescue:
+
+	------------------------------------
+	MAYDAY
+	ALL STATIONS, ALL STATIONS, ALL STATIONS
+	This is Bremen Rescue
+	SEELONCE MAYDAY
+
+	OUT
+	------------------------------------
+
+	...
+
+Skipper Seeadler:
+
+	Wir haben ihn! Klitschnass, aber putzmunter.
+	Schnell Bremen Rescue Bescheid geben.
+
+	------------------------------------
+	MAYDAY
+	Bremen Rescue, Bremen Rescue, Bremen Rescue
+	This is Seeadler, Seeadler, Seeadler
+	Call sign Delta Hotel Four Seven Two Eight
+	MMSI 211 384 960
+	Person recovered, no injuries.
+	No further assistance required.
+
+	OVER
+	------------------------------------
+
+Bremen Rescue:
+
+	------------------------------------
+	MAYDAY
+	ALL STATIONS, ALL STATIONS, ALL STATIONS
+	This is Bremen Rescue
+	1742 UTC
+	Seeadler
+	Call sign Delta Hotel Four Seven Two Eight
+	MMSI 211 384 960
+	SEELONCE FEENEE
+
+	OUT
+	------------------------------------
