@@ -1,0 +1,31 @@
+name: Hörspiel-Deck bauen
+
+on:
+  push:
+    paths: ["hoerspiel-deck/**", ".github/workflows/hoerspiel-deck.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: hoerspiel-deck
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Abhängigkeiten
+        run: sudo apt-get update && sudo apt-get install -y libudev-dev pkg-config
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Bauen
+        run: cargo build --release --locked && strip target/release/hoerspiel-deck
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hoerspiel-deck
+          path: hoerspiel-deck/target/release/hoerspiel-deck

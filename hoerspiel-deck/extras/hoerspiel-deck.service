@@ -1,0 +1,10 @@
+[Unit]
+Description=Hörspiel-Deck (Stream Deck steuert Audacity)
+
+[Service]
+ExecStart=%h/.local/bin/hoerspiel-deck
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
