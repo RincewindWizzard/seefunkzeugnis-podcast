@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SRC-Lernskript – Ein Tag auf der Kieler Bucht</title>
+<style>
+  :root{
+    --bg:#fafaf7; --fg:#1d1d1b; --muted:#6b6b66; --line:#dcdcd5;
+    --hinnerk:#1f5fa8; --jonas:#d9822b; --birte:#2e8b57; --ole:#8b5a2b;
+    --klaas:#b03a6f; --nordic:#4b4b9e; --bremen:#c0392b; --erzaehler:#555;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{max-width:860px;margin:0 auto;padding:24px 20px 80px}
+  h1{font-size:1.7rem;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 24px}
+  h2{margin:48px 0 12px;padding:8px 12px;background:var(--fg);color:#fff;border-radius:6px;font-size:1.2rem;scroll-margin-top:90px}
+  h3{margin:28px 0 8px;font-size:1.05rem;border-bottom:2px solid var(--line);padding-bottom:4px}
+  table{border-collapse:collapse;width:100%;margin:8px 0 16px;font-size:.92rem}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+  th{background:#eeeee8}
+  .box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:12px 0}
+  .box ul{margin:4px 0;padding-left:20px}
+
+  /* Rollen-Filter */
+  .filter{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+  .filter b{font-size:.9rem;margin-right:6px}
+  .chip{display:inline-flex;align-items:center;gap:4px;margin:3px 4px 3px 0;padding:3px 10px;border-radius:999px;border:2px solid var(--c);color:var(--c);font-size:.85rem;font-weight:600;cursor:pointer;background:#fff;user-select:none}
+  .chip input{accent-color:var(--c);margin:0}
+  .filter button{margin-left:6px;font-size:.8rem;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+  body.filtering .spk:not(.sel){opacity:.28}
+  body.filtering .spk.sel{box-shadow:0 0 0 3px var(--c)}
+
+  /* Sprecherblöcke */
+  .r-hinnerk{--c:var(--hinnerk)} .r-jonas{--c:var(--jonas)} .r-birte{--c:var(--birte)} .r-ole{--c:var(--ole)}
+  .r-klaas{--c:var(--klaas)} .r-nordic{--c:var(--nordic)} .r-bremen{--c:var(--bremen)} .r-erzaehler{--c:var(--erzaehler)}
+  .spk{background:#fff;border:1px solid var(--line);border-left:8px solid var(--c);border-radius:6px;margin:10px 0;padding:8px 14px 10px;transition:opacity .15s}
+  .who{font-weight:800;color:var(--c);text-transform:uppercase;letter-spacing:.03em;font-size:.88rem;margin-bottom:4px}
+  .who .ship{margin-left:8px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--muted)}
+  .who .note{text-transform:none;font-weight:500;color:var(--muted)}
+  .say p{margin:3px 0}
+
+  /* Funkspruch */
+  .radio{margin:8px 0;border:2px solid var(--c);border-radius:6px;background:#f5f7fb;overflow:hidden}
+  .radio .tag{background:var(--c);color:#fff}
+  .radio pre{margin:0;padding:10px 12px;font:600 .98rem/1.55 ui-monospace,"Cascadia Mono",Consolas,monospace;white-space:pre-wrap}
+
+  /* Geräteeinstellung */
+  .device{margin:8px 0;border:1px dashed #888;border-radius:6px;background:#fffbea}
+  .device .tag{background:#f3e6a8;color:#5a4a00}
+  .device ul{margin:6px 0;padding:0 12px 4px 30px;font-size:.95rem}
+  .tag{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px}
+
+  /* Regie & Geräusche */
+  .sfx{margin:10px 0;padding:6px 12px;background:#efe9f7;border-radius:6px;color:#4a2f73;font-style:italic;font-weight:600}
+  .stage{margin:10px 0;padding:6px 12px;color:var(--muted);font-style:italic;border-left:3px solid var(--line)}
+
+  .legend span{display:inline-block;margin:2px 8px 2px 0;font-size:.85rem}
+  nav.toc{columns:2;font-size:.92rem}
+  nav.toc a{color:var(--fg)}
+
+
+  /* Auto-Scroll-Sidebar */
+  .side{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:10;width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.85rem;text-align:center}
+  .side .play{width:100%;font-size:1.1rem;font-weight:700;padding:10px 0;border:0;border-radius:8px;background:var(--fg);color:#fff;cursor:pointer}
+  .side .play.on{background:#c0392b}
+  .side label{display:block;margin-top:10px;color:var(--muted)}
+  .side input[type=range]{width:100%}
+  .side .hint{margin-top:8px;color:var(--muted);font-size:.75rem}
+  @media (max-width:1240px){
+    .side{left:auto;right:12px;top:auto;bottom:12px;transform:none;width:auto;display:flex;align-items:center;gap:10px;padding:8px 10px}
+    .side .play{width:auto;padding:8px 14px}
+    .side label{margin:0}
+    .side input[type=range]{width:110px}
+    .side .hint{display:none}
+  }
+  @media print{
+    .side{display:none}
+    .filter,button{display:none}
+    body{font-size:12pt;background:#fff}
+    .spk,.radio,.device{break-inside:avoid}
+    h2{break-before:page;background:none;color:#000;border-bottom:3px solid #000;border-radius:0}
+    body.filtering .spk:not(.sel){opacity:.35}
+  }
+</style>
+</head>
+<body>
+<aside class="side" aria-label="Automatisch scrollen">
+  <button type="button" class="play" id="play">▶ Play</button>
+  <label for="speed">Tempo: <b id="speedval">35</b></label>
+  <input type="range" id="speed" min="10" max="120" step="5" value="35">
+  <div class="hint">Leertaste = Play/Pause</div>
+</aside>
+<main>
+  <h1>SRC-Lernskript: Ein Tag auf der Kieler Bucht</h1>
+  <p class="sub">Hörspiel zum Lernen der Funkspruchtypen im UKW-Seefunk</p>
+
+  <div class="filter">
+    <b>Meine Rolle hervorheben:</b>%%CAST%%<button type="button" id="reset">alle zeigen</button>
+  </div>
+
+  <h2 id="figuren">Figuren</h2>
+  <table>
+    <tr><th>Rolle</th><th>Schiff / Station</th><th>Beschreibung</th></tr>
+    <tr><td class="r-hinnerk"><b style="color:var(--c)">Skipper Hinnerk</b></td><td rowspan="4"><b>Seeadler</b> (Segelyacht)<br>Rufzeichen DH4728<br><i>Delta Hotel Four Seven Two Eight</i><br>MMSI 211 384 960</td><td>Vater, erfahrener Segler, gutmütig-grummelig. Spricht an Bord mit Hamburger Schnauze, im Funk sauber nach Lehrbuch. Erklärt jeden Funkspruch, bevor er ihn absetzt.</td></tr>
+    <tr><td class="r-jonas"><b style="color:var(--c)">Jonas</b></td><td>Sein Sohn, acht Jahre alt, neugierig. Drückt jeden Knopf, klettert überall hoch.</td></tr>
+    <tr><td class="r-birte"><b style="color:var(--c)">Tante Birte</b></td><td>Hinnerks Schwester. Beste Augen an Bord, das Fernglas immer griffbereit.</td></tr>
+    <tr><td class="r-ole"><b style="color:var(--c)">Onkel Ole</b></td><td>Birtes Mann. Hilfsbereit, aber ein bisschen ungeschickt.</td></tr>
+    <tr><td class="r-klaas"><b style="color:var(--c)">Skipper Klaas</b></td><td><b>Möwe</b> (Motorboot)<br>Rufzeichen DB5163<br><i>Delta Bravo Five One Six Three</i><br>MMSI 211 527 340</td><td>Alter Kumpel von Hinnerk. Sein Außenborder ist eine Dauerbaustelle. Typ Hafenkante, immer einen Spruch auf Lager.</td></tr>
+    <tr><td class="r-nordic"><b style="color:var(--c)">Kapitän Nordic Star</b></td><td><b>Nordic Star</b> (Frachter)<br>Rufzeichen V2QK7<br><i>Victor Two Quebec Kilo Seven</i><br>MMSI 305 418 000</td><td>Ruhiger Profi. Funkt wie aus dem Lehrbuch.</td></tr>
+    <tr><td class="r-bremen"><b style="color:var(--c)">Bremen Rescue</b></td><td><b>Seenotleitung Bremen</b> (MRCC)<br>MMSI 002 111 240</td><td>Sachlich, freundlich, unaufgeregt. Hört rund um die Uhr Kanal 16 und Kanal 70 (DSC) ab.</td></tr>
+    <tr><td class="r-erzaehler"><b style="color:var(--c)">Erzähler</b></td><td>–</td><td>Verbindet die Szenen mit kurzen Sätzen.</td></tr>
+  </table>
+
+  <div class="box">
+    <b>Hinweise für die Sprecher</b>
+    <ul>
+      <li>Rufzeichen werden buchstabiert, Zahlen Ziffer für Ziffer gesprochen.</li>
+      <li>Uhrzeiten im Funk sind immer UTC.</li>
+      <li>Die gelben Kästen <b>„Am Funkgerät“</b> liest die Rolle, in deren Block sie stehen, bevor sie funkt.</li>
+      <li>Oben kannst du deine Rolle anhaken: Dann werden alle anderen Rollen ausgegraut. Das funktioniert auch beim Drucken.</li>
+    </ul>
+    <div class="legend">
+      <span class="sfx" style="display:inline-block;margin:0">🔊 Geräusch / Soundeffekt</span>
+      <span class="stage" style="display:inline-block;margin:0">🎬 Regieanweisung (wird nicht gesprochen)</span>
+    </div>
+  </div>
+
+  <nav class="toc box">
+    <a href="#szene1">Szene 1 – DSC-Testanruf</a><br>
+    <a href="#szene2">Szene 2 – Fehlalarm zurücknehmen</a><br>
+    <a href="#szene3">Szene 3 – Routineanruf</a><br>
+    <a href="#szene4">Szene 4 – Sicherheitsmeldung</a><br>
+    <a href="#szene5">Szene 5 – Dringlichkeitsmeldung</a><br>
+    <a href="#szene6">Szene 6 – Dringlichkeit aufheben</a><br>
+    <a href="#szene7">Szene 7 – Funkärztliche Beratung</a><br>
+    <a href="#szene8">Szene 8 – MAYDAY RELAY nach Beobachtung</a><br>
+    <a href="#szene9">Szene 9 – Notfall: Mann über Bord</a><br>
+    <a href="#szene10">Szene 10 – DSC-Gruppenanruf</a><br>
+    <a href="#spick">Spickzettel</a>
+  </nav>
+
+%%BODY%%
+
+  <h2 id="spick">Spickzettel: Die Funksprüche im Vergleich</h2>
+  <table>
+    <tr><th>Meldung</th><th>Wann?</th><th>DSC-Kategorie</th><th>Sprechfunk</th><th>Ende</th></tr>
+    <tr><td><b>MAYDAY</b></td><td>ernste, unmittelbare Gefahr</td><td>Distress</td><td>Kanal 16</td><td>OVER</td></tr>
+    <tr><td><b>MAYDAY RELAY</b></td><td>Notfall eines anderen weitergeben</td><td>Distress Relay</td><td>Kanal 16</td><td>OVER</td></tr>
+    <tr><td><b>PAN PAN</b></td><td>Gefahr, aber nicht unmittelbar</td><td>Urgency</td><td>Kanal 16</td><td>OVER</td></tr>
+    <tr><td><b>SÉCURITÉ</b></td><td>Warnung, nautisch oder Wetter</td><td>Safety</td><td>Arbeitskanal</td><td>OUT</td></tr>
+    <tr><td><b>Routine</b></td><td>alles andere</td><td>Routine</td><td>Arbeitskanal</td><td>OUT</td></tr>
+  </table>
+  <table>
+    <tr><th>Ausdruck</th><th>Bedeutung</th><th>Wer sagt es?</th></tr>
+    <tr><td><b>SEELONCE MAYDAY</b></td><td>Funkstille im Notverkehr</td><td>Station, die den Notverkehr leitet</td></tr>
+    <tr><td><b>SEELONCE DISTRESS</b></td><td>Funkstille im Notverkehr</td><td>jede andere Station</td></tr>
+    <tr><td><b>PRUDONCE</b></td><td>eingeschränkter Funkverkehr wieder erlaubt</td><td>Station, die den Notverkehr leitet</td></tr>
+    <tr><td><b>SEELONCE FEENEE</b></td><td>Notverkehr beendet</td><td>Station, die den Notverkehr leitet</td></tr>
+  </table>
+</main>
+<script>
+  const boxes=[...document.querySelectorAll('.filter input')];
+  function apply(){
+    const sel=boxes.filter(b=>b.checked).map(b=>b.value);
+    document.body.classList.toggle('filtering',sel.length>0);
+    document.querySelectorAll('.spk').forEach(s=>s.classList.toggle('sel',sel.includes(s.dataset.role)));
+  }
+  boxes.forEach(b=>b.addEventListener('change',apply));
+  document.getElementById('reset').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);apply();});
+
+  // Auto-Scroll
+  const btn=document.getElementById('play'), sp=document.getElementById('speed'), spv=document.getElementById('speedval');
+  let playing=false, pos=0, last=0, lastSet=0;
+  function step(ts){
+    if(!playing) return;
+    const dt=last?(ts-last)/1000:0; last=ts;
+    if(Math.abs(window.scrollY-lastSet)>2) pos=window.scrollY; // manuell gescrollt
+    pos+= +sp.value*dt;
+    window.scrollTo(0,pos); lastSet=window.scrollY;
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-1){toggle(false);return;}
+    requestAnimationFrame(step);
+  }
+  function toggle(on){
+    playing = on===undefined ? !playing : on;
+    btn.textContent = playing ? '❚❚ Pause' : '▶ Play';
+    btn.classList.toggle('on',playing);
+    if(playing){pos=window.scrollY;lastSet=pos;last=0;requestAnimationFrame(step);}
+  }
+  btn.addEventListener('click',()=>toggle());
+  sp.addEventListener('input',()=>spv.textContent=sp.value);
+  document.addEventListener('keydown',ev=>{
+    if(ev.code==='Space' && !/INPUT|BUTTON|TEXTAREA/.test(ev.target.tagName)){ev.preventDefault();toggle();}
+  });
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ Vier Personen an Bord.
 
 Skipper Hinnerk:
 	Vater, erfahrener Segler, gutmütig-grummelig.
-	Spricht an Bord Platt, im Funk sauber nach Lehrbuch.
+	Spricht an Bord mit Hamburger Schnauze, im Funk sauber nach Lehrbuch.
 	Erklärt jeden Funkspruch, bevor er ihn absetzt.
 
 Jonas:
@@ -34,7 +34,7 @@ Zwei Personen an Bord.
 
 Skipper Klaas:
 	Alter Kumpel von Hinnerk. Sein Außenborder ist eine Dauerbaustelle.
-	Spricht noch mehr Platt als Hinnerk.
+	Typ Hafenkante, immer einen Spruch auf Lager.
 
 ## Nordic Star (Frachter)
 
@@ -148,7 +148,7 @@ Skipper Hinnerk:
 # Szene 3: Routineanruf von Schiff zu Schiff
 
 Tante Birte:
-	Kiek mol, dor achtern! Dat Boot dümpelt so komisch rum.
+	Guck mal da hinten! Das Boot dümpelt so komisch rum.
 
 Skipper Hinnerk:
 	Gib mal das Fernglas ... Ach, die Möwe! Klaas sein Außenborder mal wieder.
@@ -166,8 +166,8 @@ Skipper Hinnerk:
 	THIS IS
 	SEEADLER, SEEADLER, SEEADLER
 
-	Moin Klaas! Sach ma, is dien Butenborder all wedder in'ne Wicken?
-	Sollen wi di in'n Hoben slepen, oder kriegst dat noch alleen hen?
+	Moin Klaas! Sach ma, is dein Außenborder schon wieder im Eimer?
+	Sollen wir dich in'n Hafen schleppen, oder kriegst du das noch alleine hin?
 
 	OVER
 	-----------------------------------------
@@ -178,8 +178,8 @@ Skipper Klaas:
 	SEEADLER
 	THIS IS MÖWE
 
-	Ja nee, dat Schietding will eenfach nich anspringen, und wi kommt hier ut de Fohrrinn nich rut.
-	De letzte Tanker is uns all bannig dicht achtern rinrauscht!
+	Jo nee, das Schietding will einfach nich anspringen, und wir kommen hier aus der Fahrrinne nich raus.
+	Der letzte Tanker is uns schon mächtig dicht am Heck vorbeigerauscht!
 
 	OVER
 	-----------------------------------------
@@ -190,7 +190,7 @@ Skipper Hinnerk:
 	MÖWE
 	THIS IS SEEADLER
 
-	Denn sett wi fix 'ne Sicherheitsmeldung af und kommt röver. Hool di fast, Klaas!
+	Na denn setzen wir fix 'ne Sicherheitsmeldung ab und kommen rüber. Halt die Ohren steif, Klaas!
 
 	OVER
 	-----------------------------------------
@@ -200,7 +200,7 @@ Skipper Klaas:
 	-----------------------------------------
 	SEEADLER
 	THIS IS MÖWE
-	Prima, danke di!
+	Prima, danke dir!
 
 	OUT
 	-----------------------------------------
@@ -244,9 +244,9 @@ Skipper Hinnerk:
 An Bord der Möwe.
 
 Skipper Klaas:
-	Gottseidank, Hinnerk kommt.
-	Aber wat is dat denn? Dor achtern kommt so'n Frachter, de hollt jo stur op uns to!
-	Nu ward dat eng. Jetzt is dat 'ne Dringlichkeit.
+	Gott sei Dank, Hinnerk kommt.
+	Aber was is das denn? Da hinten kommt so'n Frachter, der hält ja stur auf uns zu!
+	Jetzt wird's eng. Das is 'ne Dringlichkeit.
 
 	Am Funkgerät:
 	DSC-Menü → All Ships Call
@@ -309,8 +309,8 @@ Skipper Hinnerk:
 	Leine ist fest. Klaas, ihr hängt am Haken!
 
 Skipper Klaas:
-	Fein. Denn mutt ik mien PAN PAN noch wedder opheben.
-	Sonst passen de annern noch den ganzen Dag op mi op.
+	Fein. Denn muss ich mein PAN PAN noch aufheben.
+	Sonst passen die anderen noch den ganzen Tag auf mich auf.
 
 	Am Funkgerät:
 	Kein DSC nötig. Auf Kanal 16 bleiben, dort wurde die Dringlichkeitsmeldung gesendet.
@@ -334,7 +334,7 @@ Skipper Klaas:
 Kurz vor dem Hafen. Die Schleppleine ruckt.
 
 Onkel Ole:
-	Aua! Aua! Mien Finger! De Finger weer twüschen Leine und Klampe!
+	Aua! Mein Finger! Der war zwischen Leine und Klampe!
 
 Tante Birte:
 	Zeig her ... Oh, der sieht nicht gut aus. Der ist dick und ganz schief.
@@ -525,7 +525,7 @@ Nordic Star:
 Skipper Klaas (im Hafen, am Funkgerät):
 
 	-----------------------------------------
-	SEEADLER, THIS IS MÖWE. Hinnerk, wat is denn bi jo los?
+	SEEADLER, THIS IS MÖWE. Hinnerk, was is denn bei euch los?
 	-----------------------------------------
 
 Nordic Star:
@@ -542,7 +542,7 @@ Nordic Star:
 	-----------------------------------------
 
 Skipper Klaas:
-	Oha. Ik bin ja all still.
+	Oha. Bin ja schon still.
 
 ## 9d: MAYDAY RELAY an Bremen Rescue
 
@@ -695,7 +695,7 @@ Skipper Hinnerk:
 	THIS IS
 	SEEADLER, SEEADLER, SEEADLER
 
-	Moin tosamen! Heute Abend grillen wir am Steg.
+	Moin zusammen! Heute Abend grillen wir am Steg.
 	Die Würstchen spendiert der Skipper der Seeadler.
 	Klaas bringt Bier mit, Ole kann wegen seines Gipsfingers leider nicht grillen.
 	Und Jonas erzählt euch, wie man eine Galionsfigur wird.
