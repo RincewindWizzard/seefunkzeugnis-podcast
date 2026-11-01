@@ -72,30 +72,10 @@ impl State {
             eprintln!("Audacity is not reachable. Is it running with mod-script-pipe enabled?");
             return false;
         }
-        let Some(a) = self.audacity.as_mut() else {
-            return false;
-        };
-
-        let result = match action {
-            Action::Track(name) => a.select_track(name),
-            Action::Record if self.recording => a.command("Stop:").map(|_| true),
-            Action::Record => a.command("Record1stChoice:").map(|_| true),
-            Action::Stop => a.command("Stop:").map(|_| true),
-            Action::Undo => a.command("Undo:").map(|_| true),
-        };
-
-        match result {
-            Ok(true) => {
-                match action {
-                    Action::Track(name) => self.selected_track = Some(name),
-                    Action::Record => self.recording = !self.recording,
-                    Action::Stop => self.recording = false,
-                    Action::Undo => {}
-                }
-                true
-            }
-            Ok(false) => {
-                eprintln!("Action {action:?} failed: track not found in Audacity.");
+        match self.try_run(action) {
+            Ok(Ok(())) => true,
+            Ok(Err(reason)) => {
+                eprintln!("{reason}");
                 false
             }
             Err(e) => {
@@ -103,6 +83,68 @@ impl State {
                 false
             }
         }
+    }
+
+    /// The outer `Result` reports a broken connection, the inner one a refused action.
+    fn try_run(&mut self, action: Action) -> std::io::Result<Result<(), String>> {
+        let Some(a) = self.audacity.as_mut() else {
+            return Ok(Err("Not connected to Audacity.".into()));
+        };
+
+        match action {
+            Action::Track(name) => {
+                // Selecting a track stops a running recording in Audacity anyway, so a speaker
+                // change during recording means: stop, select, continue on the new track.
+                let was_recording = self.recording;
+                if was_recording {
+                    a.command("Stop:")?;
+                    self.recording = false;
+                }
+                if !a.select_track(name)? {
+                    return Ok(Err(format!("Track \"{name}\" not found in Audacity.")));
+                }
+                self.selected_track = Some(name);
+                if was_recording {
+                    a.record_at_end()?;
+                    self.recording = true;
+                }
+            }
+            Action::Record if self.recording => {
+                a.command("Stop:")?;
+                self.recording = false;
+            }
+            Action::Record => {
+                let Some(name) = self.selected_track else {
+                    return Ok(Err("Choose a speaker before recording.".into()));
+                };
+                if let Some(channels) = a.record_channels()?
+                    && channels != 1
+                {
+                    return Ok(Err(format!(
+                        "Audacity records {channels} channels. Set the recording channels to \
+                         1 (Mono) in Audacity, otherwise the take lands in the wrong tracks."
+                    )));
+                }
+                // Select again in case the selection was changed in Audacity meanwhile.
+                if !a.select_track(name)? {
+                    return Ok(Err(format!("Track \"{name}\" not found in Audacity.")));
+                }
+                a.record_at_end()?;
+                self.recording = true;
+            }
+            Action::Stop => {
+                a.command("Stop:")?;
+                self.recording = false;
+            }
+            Action::Undo => {
+                if self.recording {
+                    a.command("Stop:")?;
+                    self.recording = false;
+                }
+                a.command("Undo:")?;
+            }
+        }
+        Ok(Ok(()))
     }
 
     fn image_for<'a>(&self, index: usize, images: &'a KeyImages) -> &'a image::DynamicImage {

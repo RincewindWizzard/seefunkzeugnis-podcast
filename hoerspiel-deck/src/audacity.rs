@@ -60,12 +60,27 @@
 //! | `SelectTracks: Track=n TrackCount=1 Mode=Set` | select exactly track `n` (0-based, top to bottom) |
 //! | `SetTrackStatus: Name="…"` / `Focused=1`  | rename / focus the selected track                |
 //! | `SelectNone:`                             | clear the selection                              |
+//! | `GetPreference: Name=/AudioIO/RecordChannels` | number of input channels Audacity records    |
+//! | `CursProjectEnd:`                         | move the cursor to the end of the project        |
 //! | `Record1stChoice:`                        | record, same as pressing `R`                     |
 //! | `Stop:`                                   | stop playback or recording                       |
 //! | `Undo:`                                   | undo the last action                             |
 //!
 //! Track numbers depend on the current order in the project, so we always look tracks up by
 //! **name** via `GetInfo` right before selecting them. The user can reorder tracks freely.
+//!
+//! ## Recording pitfalls (verified against Audacity 3.4 and 3.7)
+//!
+//! * **Changing the selection stops a recording.** Commands such as `SelectTracks` need the
+//!   audio engine to be idle, so Audacity stops a running recording before executing them.
+//!   To switch speakers while recording we therefore stop, select, and start again.
+//! * **The input channel count must match the selected tracks.** `Record1stChoice` records
+//!   into the selected tracks only if they provide as many channels as the input. With a stereo
+//!   input (2 channels) and one selected mono track, Audacity silently records into the first
+//!   two tracks of the project instead. The input must be set to 1 channel (mono).
+//! * **Recording starts at the cursor.** After `Stop` the cursor stays where it was, so a
+//!   second take would overlap the first one. `CursProjectEnd` before recording appends each
+//!   take after everything recorded so far, which gives a natural dialogue timeline.
 
 use rustix::fs::{OFlags, fcntl_getfl, fcntl_setfl};
 use std::fs::{self, File, OpenOptions};
@@ -190,6 +205,19 @@ impl Audacity {
             self.command("SelectNone:")?;
         }
         Ok(created)
+    }
+
+    /// Number of input channels Audacity is set to record (1 = mono), if it can be read.
+    pub fn record_channels(&mut self) -> io::Result<Option<u32>> {
+        let response = self.command("GetPreference: Name=/AudioIO/RecordChannels")?;
+        Ok(response.first().and_then(|line| line.trim().parse().ok()))
+    }
+
+    /// Starts recording into the selected track, appended at the end of the project.
+    pub fn record_at_end(&mut self) -> io::Result<()> {
+        self.command("CursProjectEnd:")?;
+        self.command("Record1stChoice:")?;
+        Ok(())
     }
 
     /// Selects exactly the track called `name`. Returns `false` if there is no such track.

@@ -6,7 +6,9 @@ Eigenständiges Programm: spricht das Stream Deck direkt über USB an, setzt die
 - Findet das Deck, setzt Helligkeit und alle 15 Tastenbilder (die Bilder stecken im Programm).
 - Verbindet sich mit Audacity und legt fehlende Spuren automatisch an. Vorhandene Spuren bleiben unangetastet.
 - Sprecher-Taste wählt genau diese Spur. Die **aktive Spur bekommt einen weißen Rahmen.**
-- AUFNAHME startet die Aufnahme, ein zweiter Druck stoppt sie. **Während der Aufnahme blinkt die Taste rot.**
+- AUFNAHME startet die Aufnahme auf der gewählten Spur, ein zweiter Druck stoppt sie. **Während der Aufnahme blinkt die Taste rot.**
+- Jede Aufnahme wird **ans Ende des Projekts angehängt**, so entsteht der Dialog Satz für Satz.
+- **Sprecherwechsel während der Aufnahme:** Eine Sprecher-Taste beendet den laufenden Satz und nimmt sofort auf der neuen Spur weiter auf.
 - STOPP, ZURÜCK (Rückgängig).
 - Ist Audacity nicht gestartet, sind alle Tasten **abgedunkelt**. Sobald Audacity läuft, werden sie automatisch wieder hell.
 - Wenn etwas schiefgeht (zum Beispiel eine Spur fehlt), leuchtet die gedrückte Taste kurz rot. Details stehen im Terminal.
@@ -29,8 +31,9 @@ Eigenständiges Programm: spricht das Stream Deck direkt über USB an, setzt die
 
    Danach das Deck einmal ab- und wieder anstecken.
 
-2. **Audacity**: als apt-Paket oder AppImage, nicht als Snap/Flatpak, denn die haben ein eigenes /tmp.
-   Bearbeiten → Einstellungen → Module → `mod-script-pipe` = Aktiviert, dann Audacity neu starten.
+2. **Audacity 3** (Audacity 4.0.1 hat die Scripting-Schnittstelle noch nicht): am besten das Ubuntu-Paket (`sudo apt install audacity`), nicht Snap oder Flatpak, denn die haben ein eigenes /tmp.
+   - Bearbeiten → Einstellungen → Module → `mod-script-pipe` = Aktiviert, dann Audacity neu starten.
+   - Bearbeiten → Einstellungen → Audio-Einstellungen → Aufnahme → Kanäle = **1 (Mono)**. Wichtig: Bei Stereo nimmt Audacity nicht auf die gewählte Spur auf, sondern auf die ersten beiden Spuren des Projekts. Das Programm verweigert deshalb die Aufnahme, solange Stereo eingestellt ist.
 
 3. **Programm holen**: Auf GitHub unter *Actions → Hörspiel-Deck bauen* den letzten Lauf öffnen und das Artefakt `hoerspiel-deck` herunterladen (gebaut für Ubuntu 24.04 oder neuer, x86_64). Alternativ selbst bauen, siehe unten. Dann:
 
@@ -96,5 +99,14 @@ Zum Ausprobieren von Hand, solange Audacity läuft:
     timeout 1 cat <&4
     exec 3>&- 4<&-
 
-## Hinweis zur Aufnahme
-AUFNAHME entspricht der Taste R in Audacity. Ob Audacity an der Cursorposition aufnimmt oder ans Spurende anhängt, hängt von Version und Einstellungen ab. Teste es einmal mit zwei Spuren.
+## So nimmst du eine Szene auf
+
+1. Sprecher-Taste drücken, zum Beispiel HINNERK. Die Taste bekommt einen weißen Rahmen.
+2. AUFNAHME drücken und den Satz sprechen.
+3. Nächster Sprecher: einfach dessen Taste drücken. Die Aufnahme läuft auf seiner Spur weiter, direkt hinter dem vorigen Satz.
+4. Satz verpatzt? ZURÜCK entfernt den letzten Take (eine laufende Aufnahme wird vorher gestoppt). Danach dieselbe Sprecher-Taste und AUFNAHME, der neue Take wird wieder ans Ende gehängt.
+5. Am Ende STOPP oder noch einmal AUFNAHME.
+
+Wenn du in Audacity selbst stoppst (Leertaste), weiß das Programm davon nichts: Der erste Druck auf AUFNAHME stoppt dann nur, der zweite nimmt wieder auf.
+
+Warum es so gebaut ist: Audacity stoppt eine laufende Aufnahme, sobald sich die Spurauswahl ändert. Ein Sprecherwechsel heißt deshalb intern immer: stoppen, Spur wählen, ans Projektende springen, weiter aufnehmen. Die Lücke dazwischen ist sehr kurz.
