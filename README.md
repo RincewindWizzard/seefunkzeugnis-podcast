@@ -2,6 +2,8 @@
 
 Hörspiel-Drehbuch zum Lernen der Funkspruchtypen für das SRC (Short Range Certificate).
 
+**Das Skript online lesen:** https://rincewindwizzard.github.io/seefunkzeugnis-podcast/
+
 - `SRC-Lernskript.md` – das Drehbuch. Hier wird bearbeitet.
 - `build/convert.py` – baut daraus die HTML-Seite.
 - `build/template.html` – Layout, Stil, Rollenfilter, Auto-Scroll.
