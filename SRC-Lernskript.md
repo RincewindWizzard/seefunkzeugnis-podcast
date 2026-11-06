@@ -57,7 +57,7 @@ Funker Bremen Rescue:
 
 - Rufzeichen werden buchstabiert, Zahlen Ziffer für Ziffer gesprochen.
 - Uhrzeiten im Funk sind immer UTC. Im Winter ist UTC eine Stunde hinter der deutschen Zeit.
-- Die Blöcke "Am Funkgerät" liest der Erzähler bzw. der Skipper, bevor gefunkt wird.
+- Was am Funkgerät passiert, beschreibt der Erzähler, bevor gefunkt wird.
 - Funksprüche stehen zwischen den Strichlinien.
 
 
@@ -90,13 +90,14 @@ Skipper Hinnerk:
 	Nee! Der rote Knopf ist nur für echte Not. Merk dir das.
 	Für einen Test gibt es einen eigenen DSC-Testanruf.
 
-	Am Funkgerät:
-	DSC-Menü → Test Call
-	MMSI der Küstenfunkstelle eingeben: Bremen Rescue, 002 111 240
-	Senden. Kein Sprechfunk, die Bestätigung kommt automatisch per DSC zurück.
+Erzähler:
+	Hinnerk öffnet das DSC-Menü und wählt „Test Call“.
+	Er gibt die MMSI der Küstenfunkstelle ein: Bremen Rescue, 002 111 240.
+	Dann drückt er auf Senden. Gesprochen wird dabei nicht, die Bestätigung kommt automatisch per DSC zurück.
 
-	*Piepen*
+*Piepen*
 
+Skipper Hinnerk:
 	Bestätigung von Bremen Rescue ist da. Das Gerät funktioniert.
 
 
@@ -115,10 +116,12 @@ Skipper Hinnerk:
 
 	Zu spät. Den Alarm müssen wir sofort zurücknehmen.
 
-	Am Funkgerät:
-	Cancel drücken, damit der Alarm nicht automatisch wiederholt wird.
-	Das Gerät nicht ausschalten.
-	Auf Kanal 16 schalten.
+Erzähler:
+	Hinnerk drückt sofort auf Cancel, damit der Alarm nicht automatisch wiederholt wird.
+	Das Gerät schaltet er nicht aus.
+	Er stellt Kanal 16 ein und nimmt den Alarm per Sprechfunk zurück.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	ALL STATIONS, ALL STATIONS, ALL STATIONS
@@ -154,12 +157,13 @@ Skipper Hinnerk:
 	Gib mal das Fernglas ... Ach, die Möwe! Klaas sein Außenborder mal wieder.
 	Na, dann rufen wir ihn mal an.
 
-	Am Funkgerät:
-	DSC-Menü → Individual Call
-	MMSI der Möwe: 211 527 340
-	Kategorie: Routine
-	Arbeitskanal: 69, ein Schiff-Schiff-Kanal für Sportboote
-	Senden und auf die DSC-Bestätigung warten. Danach auf Kanal 69 sprechen.
+Erzähler:
+	Hinnerk öffnet das DSC-Menü und wählt „Individual Call“.
+	Er tippt die MMSI der Möwe ein: 211 527 340.
+	Als Kategorie wählt er Routine, als Arbeitskanal die 69, einen Schiff-Schiff-Kanal für Sportboote.
+	Er sendet und wartet auf die DSC-Bestätigung der Möwe. Dann schaltet er auf Kanal 69 und spricht.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	MÖWE, MÖWE, MÖWE
@@ -212,13 +216,13 @@ Skipper Hinnerk:
 	Die Möwe ist eine Gefahr für die Schifffahrt, aber noch ist niemand in Gefahr.
 	Also eine Sicherheitsmeldung.
 
-	Am Funkgerät:
-	DSC-Menü → All Ships Call
-	Kategorie: Safety
-	Folgeverkehr: Telephony
-	Arbeitskanal: ein Schiff-Schiff-Kanal, zum Beispiel 06, 08, 72 oder 77. So bleibt Kanal 16 frei.
-	Kanal 06 ist gerade frei.
-	Senden. Eine Bestätigung gibt es nicht. Dann auf Kanal 06 sprechen.
+Erzähler:
+	Hinnerk wählt im DSC-Menü „All Ships Call“, Kategorie Safety, Folgeverkehr Telephony.
+	Als Arbeitskanal nimmt er einen Schiff-Schiff-Kanal, zum Beispiel 06, 08, 72 oder 77. So bleibt Kanal 16 frei.
+	Kanal 06 ist gerade frei, also stellt er die 06 ein.
+	Er sendet. Eine Bestätigung gibt es bei diesem Anruf nicht. Dann schaltet er auf Kanal 06 und spricht.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	SÉCURITÉ, SÉCURITÉ, SÉCURITÉ
@@ -248,12 +252,12 @@ Skipper Klaas:
 	Aber was is das denn? Da hinten kommt so'n Frachter, der hält ja stur auf uns zu!
 	Jetzt wird's eng. Das is 'ne Dringlichkeit.
 
-	Am Funkgerät:
-	DSC-Menü → All Ships Call
-	Kategorie: Urgency
-	Folgeverkehr: Telephony
-	Kanal: 16. Dringlichkeitsmeldungen bleiben auf Kanal 16.
-	Senden, dann auf Kanal 16 sprechen.
+Erzähler:
+	Klaas wählt im DSC-Menü „All Ships Call“, Kategorie Urgency, Folgeverkehr Telephony.
+	Als Kanal stellt er die 16 ein, denn Dringlichkeitsmeldungen bleiben auf Kanal 16.
+	Er sendet und spricht dann auf Kanal 16.
+
+Skipper Klaas:
 
 	-----------------------------------------
 	PAN PAN, PAN PAN, PAN PAN
@@ -273,10 +277,10 @@ Skipper Klaas:
 	OVER
 	-----------------------------------------
 
-Nordic Star:
+Erzähler:
+	Auf der Nordic Star ist Kanal 16 schon eingestellt. Der Kapitän greift zum Hörer und antwortet.
 
-	Am Funkgerät:
-	Kanal 16 ist schon eingestellt. Antworten.
+Nordic Star:
 
 	-----------------------------------------
 	PAN PAN
@@ -312,8 +316,10 @@ Skipper Klaas:
 	Fein. Denn muss ich mein PAN PAN noch aufheben.
 	Sonst passen die anderen noch den ganzen Tag auf mich auf.
 
-	Am Funkgerät:
-	Kein DSC nötig. Auf Kanal 16 bleiben, dort wurde die Dringlichkeitsmeldung gesendet.
+Erzähler:
+	Dafür braucht Klaas kein DSC. Er bleibt auf Kanal 16, denn dort hat er die Dringlichkeitsmeldung gesendet.
+
+Skipper Klaas:
 
 	-----------------------------------------
 	PAN PAN, PAN PAN, PAN PAN
@@ -342,12 +348,12 @@ Tante Birte:
 Skipper Hinnerk:
 	Da fragen wir lieber einen Arzt. Bremen Rescue verbindet uns mit dem funkärztlichen Dienst.
 
-	Am Funkgerät:
-	DSC-Menü → Individual Call
-	MMSI Bremen Rescue: 002 111 240
-	Kategorie: Urgency
-	Folgeverkehr: Telephony, Kanal 16
-	Senden, auf die DSC-Bestätigung warten, dann auf Kanal 16 sprechen.
+Erzähler:
+	Hinnerk wählt im DSC-Menü „Individual Call“ und gibt die MMSI von Bremen Rescue ein: 002 111 240.
+	Als Kategorie wählt er Urgency, als Folgeverkehr Telephony auf Kanal 16.
+	Er sendet, wartet auf die DSC-Bestätigung und spricht dann auf Kanal 16.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	PAN PAN, PAN PAN, PAN PAN
@@ -412,9 +418,11 @@ Tante Birte:
 Skipper Hinnerk:
 	Dann weiß Bremen Rescue vielleicht noch nichts davon. Wir geben das weiter.
 
-	Am Funkgerät:
-	Kein DSC-Alarm. Eine Weiterleitung an alle Funkstellen geht direkt per Sprechfunk auf Kanal 16.
-	Vorher Peilung und Abstand zur Rakete schätzen und die eigene Position ablesen.
+Erzähler:
+	Hinnerk löst keinen DSC-Alarm aus. Eine Weiterleitung an alle Funkstellen geht direkt per Sprechfunk auf Kanal 16.
+	Vorher schätzt er Peilung und Abstand zur Rakete und liest die eigene Position ab.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	MAYDAY RELAY, MAYDAY RELAY, MAYDAY RELAY
@@ -465,11 +473,13 @@ Skipper Hinnerk:
 	Wenigstens hat er seine Rettungsweste an.
 	Ich mach die Notmeldung.
 
-	Am Funkgerät:
-	Klappe auf, Distress-Taste kurz drücken.
-	Wenn noch Zeit ist: Art der Not "Man Overboard" wählen. Die Position kommt vom GPS.
-	Distress-Taste gedrückt halten, bis der Alarm gesendet wird (meist 3 bis 5 Sekunden).
-	Danach Kanal 16.
+Erzähler:
+	Hinnerk klappt die Schutzklappe auf und drückt kurz die Distress-Taste.
+	Wenn noch Zeit ist, wählt man jetzt die Art der Not. Hinnerk wählt „Man Overboard“. Die Position kommt vom GPS.
+	Dann hält er die Distress-Taste gedrückt, bis der Alarm gesendet wird. Das dauert meist drei bis fünf Sekunden.
+	Danach spricht er auf Kanal 16.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	MAYDAY, MAYDAY, MAYDAY
@@ -502,8 +512,10 @@ Nordic Star:
 	Bremen Rescue hat nicht bestätigt. Dann übernehmen wir das.
 	Erst bestätigen wir der Seeadler.
 
-	Am Funkgerät:
-	Den DSC-Notalarm nicht per DSC bestätigen, sondern per Sprechfunk auf Kanal 16.
+Erzähler:
+	Der Kapitän bestätigt den DSC-Notalarm nicht per DSC, sondern per Sprechfunk auf Kanal 16.
+
+Nordic Star:
 
 	-----------------------------------------
 	MAYDAY
@@ -549,10 +561,12 @@ Skipper Klaas:
 Nordic Star:
 	Jetzt den Notruf an Bremen Rescue weiterleiten.
 
-	Am Funkgerät:
-	DSC-Menü → Distress Relay
-	Adressat: Individual, Bremen Rescue, 002 111 240
-	Danach auf Kanal 16 sprechen.
+Erzähler:
+	Der Kapitän wählt im DSC-Menü „Distress Relay“.
+	Als Adressaten wählt er Individual und gibt die MMSI von Bremen Rescue ein: 002 111 240.
+	Nach dem Senden spricht er auf Kanal 16.
+
+Nordic Star:
 
 	-----------------------------------------
 	MAYDAY RELAY, MAYDAY RELAY, MAYDAY RELAY
@@ -619,8 +633,10 @@ Skipper Hinnerk:
 	Ab unter Deck, raus aus den nassen Sachen, Decke drum.
 	Schnell Bremen Rescue Bescheid geben.
 
-	Am Funkgerät:
-	Auf Kanal 16 bleiben.
+Erzähler:
+	Hinnerk bleibt auf Kanal 16.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	MAYDAY
@@ -683,12 +699,13 @@ Skipper Hinnerk:
 	So. Nach so einem Tag gibt's Grillwurst für den ganzen Segelclub.
 	Dafür nehme ich einen Gruppenanruf, dann klingelt es bei allen Clubbooten gleichzeitig.
 
-	Am Funkgerät:
-	DSC-Menü → Group Call
-	Gruppen-MMSI des Segelclubs: 021 154 320 (Gruppen-MMSI beginnen immer mit einer 0)
-	Kategorie: Routine
-	Arbeitskanal: 69
-	Senden, dann auf Kanal 69 sprechen.
+Erzähler:
+	Hinnerk wählt im DSC-Menü „Group Call“ und gibt die Gruppen-MMSI des Segelclubs ein: 021 154 320.
+	Gruppen-MMSI beginnen immer mit einer Null.
+	Als Kategorie wählt er Routine, als Arbeitskanal die 69.
+	Er sendet und spricht dann auf Kanal 69.
+
+Skipper Hinnerk:
 
 	-----------------------------------------
 	ALL SHIPS OF SEGELCLUB KIELER BUCHT
